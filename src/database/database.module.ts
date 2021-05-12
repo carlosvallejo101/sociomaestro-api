@@ -8,6 +8,7 @@ import config from '../config';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
+      inject: [config.KEY],
       useFactory: async (configService: ConfigType<typeof config>) => {
         const {
           host,
@@ -24,10 +25,12 @@ import config from '../config';
           username,
           password,
           synchronize: false,
+          autoLoadEntities: true,
           timezone: '-05:00',
         };
       },
     }),
   ],
+  exports: [TypeOrmModule],
 })
 export class DatabaseModule {}
