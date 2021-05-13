@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BuildersModule } from './modules/builders/builders.module';
 import { ParticipantsModule } from './modules/participants/participants.module';
+import { CitiesModule } from './modules/cities/cities.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { ParticipantsModule } from './modules/participants/participants.module';
     DatabaseModule,
     BuildersModule,
     ParticipantsModule,
+    CitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

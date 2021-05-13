@@ -1,6 +1,5 @@
 import { Injectable, Inject, NotFoundException } from '@nestjs/common';
-
-import { Connection, QueryError, RowDataPacket, OkPacket } from 'mysql2';
+import { Connection, QueryError, RowDataPacket } from 'mysql2';
 
 @Injectable()
 export class ParticipantsService {
