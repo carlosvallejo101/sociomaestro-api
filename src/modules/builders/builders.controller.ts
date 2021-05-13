@@ -1,7 +1,8 @@
-import { Controller, Get, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, ParseIntPipe, Post, Body } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { BuildersService } from './builders.service';
+import { CreateBuilderDto } from './builders.dto';
 
 @ApiTags('builders')
 @Controller('builders')
@@ -10,6 +11,11 @@ export class BuildersController {
 
   @Get()
   async getBuilders() {
-    return this.buildersService.findAll();
+    return await this.buildersService.findAll();
+  }
+
+  @Post()
+  async createBuilder(@Body() payload: CreateBuilderDto) {
+    return await this.buildersService.create(payload);
   }
 }

@@ -1,8 +1,15 @@
-import { IsString, IsEmail, IsOptional, IsNotEmpty } from 'class-validator';
+import {
+  IsString,
+  IsEmail,
+  IsOptional,
+  IsNotEmpty,
+  IsPositive,
+} from 'class-validator';
 
 export class CreateBuilderDto {
-  // TO DO
-  // readonly establishmentName: string;
+  @IsPositive()
+  @IsNotEmpty()
+  readonly participantId: number;
 
   @IsString()
   @IsNotEmpty()
@@ -24,6 +31,7 @@ export class CreateBuilderDto {
   @IsOptional()
   readonly email: string;
 
-  // TO DO
-  // readonly city: number;
+  @IsPositive()
+  @IsNotEmpty()
+  readonly citieId: number;
 }
