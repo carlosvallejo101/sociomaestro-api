@@ -5,6 +5,7 @@ import {
   IsNotEmpty,
   IsPositive,
 } from 'class-validator';
+import { PartialType } from '@nestjs/swagger';
 
 export class CreateBuilderDto {
   @IsPositive()
@@ -35,3 +36,5 @@ export class CreateBuilderDto {
   @IsNotEmpty()
   readonly citieId: number;
 }
+
+export class UpdateBuilderDto extends PartialType(CreateBuilderDto) {}

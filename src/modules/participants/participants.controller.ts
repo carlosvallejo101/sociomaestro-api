@@ -1,7 +1,9 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { ParticipantsService } from './participants.service';
 
+@ApiTags('participants')
 @Controller('participants')
 export class ParticipantsController {
   constructor(private participantsService: ParticipantsService) {}
