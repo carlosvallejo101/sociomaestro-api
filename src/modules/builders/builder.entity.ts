@@ -7,6 +7,9 @@ export class BuilderEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ type: 'int', nullable: false })
+  participantId: number;
+
   @Column({ type: 'varchar', length: '13' })
   identification: string;
 
@@ -22,9 +25,6 @@ export class BuilderEntity {
   @Column({ type: 'varchar', length: '100' })
   email: string;
 
-  // TO DO
-  // establishmentName: string;
-
-  // TO DO
-  // city: number;
+  @Column({ type: 'int', nullable: false })
+  citieId: number;
 }
