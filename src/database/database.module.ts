@@ -4,6 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import config from '../config';
 
+// const mysql = require('mysql2/promise');
+const mysql = require('mysql2');
+// import mysql from 'mysql2';
+
 @Global()
 @Module({
   imports: [
@@ -31,6 +35,32 @@ import config from '../config';
       },
     }),
   ],
-  exports: [TypeOrmModule],
+  providers: [
+    {
+      provide: 'MySQL',
+      useFactory: (configService: ConfigType<typeof config>) => {
+        const {
+          host,
+          name: database,
+          password,
+          port,
+          user,
+        } = configService.database.mysql;
+        const connection = mysql.createConnection({
+          host,
+          user,
+          password,
+          database,
+          port,
+        });
+        // connection.connect((err) => {
+        //   console.log('err', err);
+        // });
+        return connection;
+      },
+      inject: [config.KEY],
+    },
+  ],
+  exports: [TypeOrmModule, 'MySQL'],
 })
 export class DatabaseModule {}
