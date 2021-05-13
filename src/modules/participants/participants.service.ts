@@ -23,6 +23,24 @@ export class ParticipantsService {
     return participants;
   }
 
+  async findByProgramId(id: number) {
+    const participants = new Promise<RowDataPacket[]>((resolve, reject) => {
+      this.connection.query(
+        `SELECT *
+          FROM ${this.tableName}
+          WHERE program_id = ${id}`,
+        (err: QueryError, rows: RowDataPacket[]) => {
+          if (err) reject(err);
+          resolve(rows);
+        },
+      );
+    });
+    if ((await participants).length === 0) {
+      throw new NotFoundException(`table ${this.tableName} is empty`);
+    }
+    return participants;
+  }
+
   async findOne(id: number) {
     const participant = new Promise<RowDataPacket[]>((resolve, reject) => {
       this.connection.query(
